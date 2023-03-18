@@ -1,0 +1,29 @@
+{
+  "name": "immensity",
+  "version": "1.0.0",
+  "description": "Многофункциональный бот на JavaScript с использованием Discord.js V14",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImmensityBot/Immensity.git"
+  },
+  "keywords": [
+    "Discord.JS"
+  ],
+  "author": "dreaper#4310, brbr#7124, windstone#3250",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ImmensityBot/Immensity/issues"
+  },
+  "homepage": "https://github.com/ImmensityBot/Immensity#readme",
+  "dependencies": {
+    "@discordjs/builders": "^1.5.0",
+    "@discordjs/rest": "^1.6.0",
+    "discord-api-types": "^0.37.36",
+    "discord.js": "^14.8.0",
+    "mongoose": "^7.0.2"
+  }
+}
