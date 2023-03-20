@@ -6,7 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('пинг')
 		.setDescription('Показывает пинг'),
-        
+
 	async execute(interaction) {
         const pingEmbed = new EmbedBuilder()
             .setColor("2b2d31")
@@ -21,6 +21,5 @@ module.exports = {
                 embeds: [pingEmbed]
             }
         );
-	},
-
+	}
 };
