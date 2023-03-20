@@ -1,4 +1,7 @@
 /node_modules/
 /src/configs/config.json
 .env
+.gitconfig
+.glitchdotcom.json
+shrinkwrap.yaml
 package-lock.json

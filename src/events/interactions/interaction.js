@@ -18,7 +18,7 @@ module.exports = {
 			await command.execute(interaction);
 		}
 		catch (error) {
-			console.error(`Произошла ошибка при выполнении ${interaction.commandName}`);
+			console.error(`Произошла ошибка при выполнении команды ${interaction.commandName}`);
 			console.error(error);
 		}
 	},
