@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkPerms({
-    flags: [Discord.PermissionsBitField.Flags.BanMembers],
-    perms: [Discord.PermissionsBitField.Flags.BanMembers]
+    flags: [Discord.PermissionsBitField.Flags.KickMembers],
+    perms: [Discord.PermissionsBitField.Flags.KickMembers]
   }, interaction)
 
   if (perms == false) return;
@@ -11,17 +11,17 @@ module.exports = async (client, interaction, args) => {
   const member = await interaction.guild.members.fetch(interaction.options.getUser('user').id);
   const reason = interaction.options.getString('reason') || 'Not given';
 
-  if (member.permissions.has(Discord.PermissionsBitField.Flags.BanMembers) || member.permissions.has(Discord.PermissionsBitField.Flags.BanMembers)) return client.errNormal({
-    error: "Вы не можете забанить модератора",
+  if (member.permissions.has(Discord.PermissionsBitField.Flags.KickMembers) || member.permissions.has(Discord.PermissionsBitField.Flags.KickMembers)) return client.errNormal({
+    error: "Вы не можете кикнуть модератора",
     type: 'editreply'
   }, interaction);
 
   client.embed({
-    title: `🔨・Бан`,
-    desc: `Вы были забанены с **${interaction.guild.name}**`,
+    title: `🔨・Кик`,
+    desc: `Вас кикнули в **${interaction.guild.name}**`,
     fields: [
       {
-        name: "👤┆Забанен пользователем",
+        name: "👤┆Кикнут пользователем",
         value: interaction.user.tag,
         inline: true
       },
@@ -32,12 +32,12 @@ module.exports = async (client, interaction, args) => {
       }
     ]
   }, member).then(function () {
-    member.ban({ reason: reason })
+    member.kick(reason)
     client.succNormal({
-      text: "Указанный пользователь успешно забанен и получил уведомление!",
+      text: "Указанный пользователь был успешно исключен и получил уведомление!",
       fields: [
         {
-          name: "👤┆Забаненный пользователь",
+          name: "👤┆Кикнутый пользователь",
           value: member.user.tag,
           inline: true
         },
@@ -50,10 +50,12 @@ module.exports = async (client, interaction, args) => {
       type: 'editreply'
     }, interaction);
   }).catch(function () {
-    member.ban({ reason: reason })
+    member.kick(reason)
     client.succNormal({
-      text: "Данный пользователь был успешно забанен, но не получил уведомление!",
+      text: "Данный пользователь был успешно исключен, но не получил уведомление!",
       type: 'editreply'
     }, interaction);
   });
 }
+
+ 
