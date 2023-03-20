@@ -4,7 +4,8 @@
   "description": "Многофункциональный бот на JavaScript с использованием Discord.js V14",
   "main": "src/index.js",
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "deploy": "node ./src/deploy.js"
   },
   "repository": {
     "type": "git",

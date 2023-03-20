@@ -19,28 +19,47 @@ const client = new Client({
 client.commands = new Collection();
 
 const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+const eventFolders = fs.readdirSync(eventsPath);
 
-// Загрузка команд
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	}
-	else {
-		client.on(event.name, (...args) => event.execute(...args));
+// Загрузка ивентов
+// Чтение каждой подпапки в директории src/events
+for (const folder of eventFolders) {
+	const folderPath = path.join(eventsPath, folder);
+	
+    const eventFiles = fs.readdirSync(folderPath)
+      	.filter((file) => file.endsWith(".js"));
+
+
+	// Чтение каждого файла в каждой подпапке директории src/events
+    for (const file of eventFiles) {
+		const filePath = path.join(folderPath, file);
+		const event = require(filePath);
+		if (event.once) {
+			client.once(event.name, (...args) => event.execute(...args));
+		}
+		else {
+			client.on(event.name, (...args) => event.execute(...args));
+		}
 	}
 }
 
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFolders = fs.readdirSync(commandsPath);
 
 // Загрузка команд
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	client.commands.set(command.data.name, command);
+// Чтение каждой подпапки в директории src/commands
+for (const folder of commandFolders) {
+	const folderPath = path.join(commandsPath, folder);
+	
+    const commandFiles = fs.readdirSync(folderPath)
+      	.filter((file) => file.endsWith(".js"));
+
+	// Чтение каждого файла в каждой подпапке директории src/commands
+	for (const file of commandFiles) {
+		const filePath = path.join(folderPath, file);
+		const command = require(filePath);
+		client.commands.set(command.data.name, command);
+	}
 }
 
 // Авторизация бота
