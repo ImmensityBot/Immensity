@@ -32,7 +32,7 @@ ImmensityBot - Многофункциональный бот на TypeScript с 
 ## 》Установка
 
 ```
-npm install @discordjs/builders @discordjs/rest discord-api-types discord.js mongoose
+npm install
 npm run start
 ```
 
